@@ -9,10 +9,18 @@ FROM _______
 WHERE _______
 ORDER BY _____, _____ DESC;
 --START
+SELECT DISTINCT ON (titles.emp_no)titles.emp_no
+
+
 SELECT emp_no, first_name, last_name --from employees
 SELECT title, from_date, to_date -- from titles
 INTO retirement_titles
 FROM employees
+WHERE
+ORDER BY emp_no;
+
+
+
 INNER JOIN titles
 
 
@@ -66,8 +74,12 @@ CREATE TABLE titles (
 	from_date DATE NOT NULL,
 	to_date DATE NOT NULL,
 	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-    PRIMARY KEY (emp_no)
+	PRIMARY KEY (emp_no)
 );
+
+	FROM titles
+	WHERE (to_date = '9999-01-01')
+
 DROP TABLE titles CASCADE;
 
 SELECT * FROM departments;
